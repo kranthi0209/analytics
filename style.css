@@ -1,4 +1,4 @@
- <style>
+<style>
     body { font-family: Arial, sans-serif; }
     table {
       border-collapse: collapse;
@@ -59,9 +59,10 @@
     }
     td.category-total {
       font-weight: bold;
-      color: black;
+      color: rgb(85, 17, 17);
       text-align: center;
       cursor: pointer;
+      background: #d8d5d5;
     }
     .legend {
       margin-bottom: 10px;
@@ -69,12 +70,13 @@
       top: 10px;
       background: #00000000;
       z-index: 3;
+      width: 100%;
     }
-    .cadre-Chief-Secretary { background-color: #e0f7fa; }
-    .cadre-Special-Chief-Secretary { background-color: #ffe0b2; }
-    .cadre-Principal-Secretary { background-color: #f3e5f5; }
-    .cadre-Secretary { background-color: #dcedc8; }
-    .cadre-Others { background-color: #f8bbd0; }
+    .cadre-Chief-Secretary { background-color: #a6c7ab; }
+    .cadre-Special-Chief-Secretary { background-color: #e4bacf; }
+    .cadre-Principal-Secretary { background-color: #bcc9ec; }
+    .cadre-Secretary { background-color: #b7dadb; }
+    .cadre-Others { background-color: #d2e2b9; }
     .popup {
       display: none;
       position: fixed;
@@ -82,11 +84,11 @@
       left: 50%;
       width: 90%;
       max-width: 700px;
-      background: #fcf0a0;
+      background: #fff8c6;
       border: 5px solid #ccc;
       padding: 20px;
       z-index: 1000;
-      box-shadow: 0 0 25px rgba(0,0,0,0.3);
+      box-shadow: 0 0 100px rgba(0,0,0,0.3);
       transform: translate(-50%, -50%);
       border-radius: 8px;
       overflow-y: auto;
@@ -102,5 +104,18 @@
       width: 100%;
       table-layout: auto;
     }
-   
-  </style>
+
+    .officer-photo-wrapper {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.officer-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid gold;
+  box-shadow: 0 0 0 6px green;
+}
+   </style>
