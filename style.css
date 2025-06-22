@@ -3,8 +3,8 @@ body {
 }
 table {
   border-collapse: collapse;
-  table-layout: auto;
-  width: 100%;
+  table-layout: fixed;
+  width: 3800px;
 }
 th, td {
   border: 1px solid #773f3f;
@@ -22,10 +22,9 @@ th {
   cursor: pointer;
 }
 th[data-department-category] {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
+      writing-mode: sideways-lr;
       white-space: normal;
-      vertical-align: center;
+      vertical-align: middle;
       padding: 8px 4px;
       height: 140px;
       max-width: 30px;
@@ -49,7 +48,7 @@ table thead tr:nth-child(2) th {
   left: 50px;
   top: 0px;
   z-index: 7;
-  background: #f5f3f3;
+  background: #f5f3f3;width: 150px;
 }
 th.sticky-col, th.sticky-col-2 {
   z-index: 8;
