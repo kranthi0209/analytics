@@ -1,1 +1,106 @@
-/* Your CSS goes here */
+ <style>
+    body { font-family: Arial, sans-serif; }
+    table {
+      border-collapse: collapse;
+      table-layout: auto;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 8px;
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    th {
+      background-color: #e0e0e0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 6;
+    }
+    table thead tr:nth-child(2) th {
+      top: 35px;
+      z-index: 5;
+      background: #f2f2f2;
+    }
+    .sticky-col {
+      position: sticky;
+      left: 0px;top: 125px;
+      z-index: 7;
+      background: #e0e0e0;
+    }
+    .sticky-col-2 {
+      position: sticky;
+      left: 50px;top: 125px;
+      z-index: 7;
+      background: #f2f2f2;
+    }
+    th.sticky-col, th.sticky-col-2 {
+      z-index: 8;
+    }
+    .category-header {
+      cursor: pointer;
+    }
+    .collapsed {
+      visibility: hidden;
+      width: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: none !important;
+    }
+    thead th.collapsed {
+      height: 0;
+      line-height: 0;
+    }
+
+    td.middle-align {
+      text-align: center;
+    }
+    td.category-total {
+      font-weight: bold;
+      color: black;
+      text-align: center;
+      cursor: pointer;
+    }
+    .legend {
+      margin-bottom: 10px;
+      position: sticky;
+      top: 10px;
+      background: #00000000;
+      z-index: 3;
+    }
+    .cadre-Chief-Secretary { background-color: #e0f7fa; }
+    .cadre-Special-Chief-Secretary { background-color: #ffe0b2; }
+    .cadre-Principal-Secretary { background-color: #f3e5f5; }
+    .cadre-Secretary { background-color: #dcedc8; }
+    .cadre-Others { background-color: #f8bbd0; }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 90%;
+      max-width: 700px;
+      background: #fcf0a0;
+      border: 5px solid #ccc;
+      padding: 20px;
+      z-index: 1000;
+      box-shadow: 0 0 25px rgba(0,0,0,0.3);
+      transform: translate(-50%, -50%);
+      border-radius: 8px;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    .popup-close {
+      float: right;
+      cursor: pointer;
+      font-size: 18px;
+      color: red;
+    }
+    .popup-table {
+      width: 100%;
+      table-layout: auto;
+    }
+   
+  </style>
