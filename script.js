@@ -1,4 +1,4 @@
-<script>
+
     const officerData = [
     {
       "SLNO": 1,
@@ -30640,8 +30640,8 @@
       "Category": "District Administration"
     }
   ];
-
-    const groupedData = {};
+   
+  const groupedData = {};
   const departments = new Set();
   const categories = new Set();
 
@@ -30691,7 +30691,7 @@
   });
   theadHTML += '</tr>';
   document.getElementById('table-header').innerHTML = theadHTML;
-
+ 
   let tbodyHTML = '';
   Object.values(groupedData).forEach(({ meta, services }) => {
     const colorClass = `cadre-${meta.Cadre.replace(/\s/g, '-')}`;
@@ -30783,38 +30783,4 @@
       showTotalPopup(data.name, data.category, data.total, data.rows);
     }
   });
-
-  document.addEventListener("click", function (e) {
-  const categoryTh = e.target.closest("th.category-header");
-  if (!categoryTh) return;
-
-  const category = categoryTh.dataset.category;
-
-  // Get all department headers under the category except the total
-  const allDeptThs = document.querySelectorAll(`th[data-department-category='${category}']:not([data-type='total'])`);
-  const totalTh = document.querySelector(`th[data-department-category='${category}'][data-type='total']`);
-
-  const headerRow = document.querySelector("thead tr:nth-child(2)");
-  const allThs = Array.from(headerRow.children);
-  const deptColIndices = Array.from(allDeptThs).map(th => allThs.indexOf(th));
-
-  // Determine if we are collapsing or expanding
-  const collapsing = !allDeptThs[0].classList.contains("collapsed");
-
-  // Toggle department header cells
-  allDeptThs.forEach(th => th.classList.toggle("collapsed", collapsing));
-
-  // Toggle data cells in same column index
-  document.querySelectorAll("tbody tr").forEach(row => {
-    deptColIndices.forEach(i => {
-      const cell = row.children[i];
-      if (cell) cell.classList.toggle("collapsed", collapsing);
-    });
-  });
-
-  // Adjust the colspan of the category header
-  const newColspan = collapsing ? 1 : (allDeptThs.length + 1); // +1 for total
-  categoryTh.setAttribute("colspan", newColspan);
-});
-
-  </script>
+  
