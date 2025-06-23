@@ -77,8 +77,10 @@ button:hover {
 
 .chart-title {
   font-size: 18px;
-  font-weight: bold;border-radius: 12px;
-  color: black;background: #ccb849;
+  font-weight: bold;
+  border-radius: 12px;
+  color: black;
+  background: #ccb849;
   margin-bottom: 10px;
 }
 
