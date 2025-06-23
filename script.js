@@ -10514,7 +10514,7 @@ let sortState = { column: null, direction: 'asc' };
       "To": "02-09-2010",
       "Years": 1.76,
       "PostName": "ZONAL COMM.GHMC",
-      "Department": "MAud",
+      "Department": "MAUD",
       "Category": "Local Bodies Administration"
     },
     {
