@@ -118,7 +118,7 @@ td.category-total {
   top: 50%;
   left: 50%;
   width: 90%;
-  max-width: 1000px;
+  max-width: 800px;
   background: #fff8c6;
   border: 5px solid #ccc;
   padding: 20px;
@@ -144,15 +144,28 @@ td.category-total {
   width: 100%;
   table-layout: auto;
 }
-.officer-photo-wrapper {
-  text-align: center;
-  margin: 10px 0;
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 20px;
 }
-.officer-photo {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid gold;
-  box-shadow: 0 0 0 6px green;
+
+.chart-container {
+  background: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+}
+
+.chart-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+canvas {
+  width: 100% !important;
+  height: 200px !important;
 }
