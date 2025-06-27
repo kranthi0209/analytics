@@ -20,11 +20,11 @@ const customDepartmentOrder = {
   "Energy, Infra & Industries": ["Energy", "Industries & Infrastructure", "Handloom & Textiles", "Water Resource", "Roads & Buildings", "Tourism"],
   "Finance": ["Finance", "Commercial Tax"],
   "IT & other Tech": ["APSFL", "APTS", "e-Seva", "IT & Electronics", "RTGS"],
-  "Local Bodies Administration": ["MAUD", "CRDA & AMRDA", "Municipal Commissioner", "PR & RD", "CEO, ZP", "GSWS"],
+  "Local Bodies Administration": ["MAUD", "CRDA & AMRDA", "Municipal Commissioner", "PR & RD", "GSWS"],
   "Regulatory": ["Planning", "GAD", "Revenue (Lands)", "Endowment", "TTD", "Prohibition & Excise", "Stamps & Registration", "Disaster Management", "Mines & Geology", "CoE & APVC", "EFST", "Election Commision", "Labour", "Transport"],
   "Welfare & Development": ["Welfare", "Education", "Health", "Skill Development", "Food & Civil Supplies", "Housing", "Youth, Sports & Culture"],
   "Personal Office": ["Governors Office", "Prime Ministers Office", "Chief Ministers Office"],
-  "District Administration": ["Assistant Collector (Trainee)", "District Collector", "Joint Collector", "Other Dist Posts", "PO ITDA", "Sub Collector"]
+  "District Administration": ["District Collector", "Joint Collector", "Sub Collector", "PO ITDA", "Assistant Collector (Trainee)", "Other Dist Posts" ]
 };
 
 fetch('officerData.json')
