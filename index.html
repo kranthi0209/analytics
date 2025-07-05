@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IAS Officer Service Summary Report</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1 style="text-align: center;">IAS Officer Service Summary Report</h1>
+  <h4 style="text-align: center;color: brown;">(Data as on 18.06.2025)</h4>
+<div style="text-align: center; margin-top: 20px;">
+
+    <button onclick="location.href='graph.html'" style="display: inline-flex; align-items: center; background: linear-gradient(to right, #60a5fa, #2563eb); color: white; border: none; border-radius: 12px; padding: 12px 20px; margin: 10px; font-size: 16px; cursor: pointer;">
+    <i data-lucide="bar-chart-3" style="margin-right: 10px;"></i>
+    Click Here for IAS Officer's Graphical View
+  </button>
+
+  
+  <!-- IPS Data -->
+   <button class="animated-button" onclick="location.href='indexIPS.html'" style="display: inline-flex; align-items: center;height: 60px; background: linear-gradient(to right,#dc6969, #a41515); color: white; border: none; border-radius: 30px; padding: 12px 20px; margin: 10px; font-size: 20px; cursor: pointer;font-weight: bolder;">
+    <i data-lucide="shield-user" style="margin-right: 10px;"></i>
+    IPS Data
+  </button>
+
+  <!-- IFS Data -->
+  <button class="animated-button" onclick="location.href='indexIFS.html'" style="display: inline-flex; align-items: center;height: 60px; background: linear-gradient(to right,#34d399, #2c7d63); color: white; border: none; border-radius: 30px; padding: 12px 20px; margin: 10px; font-size: 20px; cursor: pointer;font-weight: bolder;">
+    <i data-lucide="tree-deciduous" style="margin-right: 10px;"></i>
+    IFS Data
+  </button>
+  </div>
+  <div class="legend">
+    <strong>Legend:</strong>
+    <span class="cadre-Chief-Secretary">Chief Secretary</span> |
+    <span class="cadre-Special-Chief-Secretary">Special Chief Secretary</span> |
+    <span class="cadre-Principal-Secretary">Principal Secretary</span> |
+    <span class="cadre-Secretary">Secretary</span> |
+    <span class="cadre-Others">Others</span>
+  </div>
+
+
+  <table id="officer-table">
+    <thead id="table-header"></thead>
+    <tbody id="table-body"></tbody>
+  </table>
+
+  <div id="officer-popupa" class="popupa">
+    <span class="popupa-close" onclick="$('#officer-popupa').hide()">✖</span>
+    <div id="officer-details"></div>
+  </div>
+
+  <div id="service-popupb" class="popupb">
+    <span class="popupb-close" onclick="$('#service-popupb').hide()">✖</span>
+    <div id="service-details"></div>
+  </div>
+</body>
+</html>
