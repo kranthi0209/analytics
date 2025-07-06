@@ -182,7 +182,7 @@ function showOfficer(data) {
     "DateOfBirth": "Date of Birth", "AllotmentYear": "Allotment Year", "Domicile": "Domicile",
     "EmailId": "Email", "PhoneNo": "Phone Number"
   };
-  const excludeKeys = ["From", "To", "Years", "PostName", "Department", "Category", "SLNO", "SeniorityNo", "HCM"];
+  const excludeKeys = ["From", "To", "Years", "PostName", "Department", "Category", "SLNO", "SeniorityNo", "HCM","Cadre"];
   let html = '<table class="popupa-table">';
   for (const [key, value] of Object.entries(data)) {
     if (excludeKeys.includes(key)) continue;
