@@ -312,7 +312,8 @@ function populateHCMCheckboxes(hcmList) {
   sortedHCMs.forEach(hcm => {
     const id = `hcm_${hcm.replace(/\W+/g, '_')}`;
     const imageName = hcm.replace(/\s+/g, '_') + '.jpg';
-    const imagePath = `${imageName}`;
+    const basePath = '/analytics/';
+    const imagePath = `${basePath}${imageName}`;
 
     const div = document.createElement('div');
     div.className = 'hcm-item';
