@@ -312,7 +312,7 @@ function populateHCMCheckboxes(hcmList) {
   sortedHCMs.forEach(hcm => {
     const id = `hcm_${hcm.replace(/\W+/g, '_')}`;
     const imageName = hcm.replace(/\s+/g, '_') + '.jpg';
-    const basePath = '/analytics/blob/main/';
+    const basePath = 'https://kranthi0209.github.io/analytics/';
     const imagePath = `${basePath}${imageName}`;
 
     const div = document.createElement('div');
@@ -345,7 +345,7 @@ function renderHCMWithImage(hcm) {
   if (!hcm || !hcm.trim()) return '';
   const cleanHCM = hcm.trim();
   const imageName = cleanHCM.replace(/\s+/g, '_') + '.jpg';
-  const basePath = '/analytics/blob/main/';
+  const basePath = 'https://kranthi0209.github.io/analytics/';
   const imagePath = `${basePath}${imageName}`;
   return `<img src="${imagePath}" alt="${escapeHtml(cleanHCM)}" style="height:20px;vertical-align:middle;margin-right:6px;border-radius:3px;">${escapeHtml(cleanHCM)}`;
 }
