@@ -310,12 +310,14 @@ canvas {
   padding: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  max-height: 300px;
+  max-height: 500px;
   overflow-y: auto;
-  width: 500px;
-  min-width: 480px;
+  width: 450px !important;        /* ⬅️ Force wider width */
+  min-width: 450px !important;    /* ⬅️ Prevent shrinkage */
   text-align: left;
+  box-sizing: border-box;
 }
+
 
 /* 📸 Image and Checkbox Row */
 .hcm-item {
@@ -323,7 +325,7 @@ canvas {
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
-  width:100%;
+  width: 410px;
 }
 .hcm-item img {
   width: var(--hcm-img-size, 34px);
