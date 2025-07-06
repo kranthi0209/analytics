@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IAS Officer Service Summary Report</title>
+  <link rel="stylesheet" href="styleIAS.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="scriptIAS.js" defer></script>
+</head>
+<body>
+  <h1 style="text-align: center; font-size: 60px;margin-bottom: 10px;">IAS Officer Service Summary Report</h1>
+    
+<div style="text-align: center; margin-top: 5px;margin-bottom: 10px;">
+  <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; position: relative;">
+
+    <!-- Graph View -->
+    <button onclick="location.href='graphIAS.html'" class="animated-button blue">
+      <i data-lucide= "bar-chart-3" style="margin-right: 10px;"></i>
+      Graphical View
+    </button>
+    
+    <!-- IAS Data -->
+    <button onclick="location.href='indexIAS.html'" class="animated-button mustard">
+      <i data-lucide="circle-user-round" style="margin-right: 10px;"></i>
+      IAS Data
+    </button>
+    <!-- IPS Data -->
+    <button onclick="location.href='indexIPS.html'" class="animated-button red">
+      <i data-lucide="shield-user" style="margin-right: 10px;"></i>
+      IPS Data
+    </button>
+
+    <!-- IFS Data -->
+    <button onclick="location.href='indexIFS.html'" class="animated-button green">
+      <i data-lucide="tree-deciduous" style="margin-right: 10px;"></i>
+      IFS Data
+    </button>
+
+    <!-- Chief Minister Filter -->
+    <div style="position: relative;">
+      <button id="hcmFilterBtn" class="animated-button purple">
+        <i data-lucide="user-check" style="margin-right: 10px;"></i>
+        Select Chief Minister ⬇
+      </button>
+
+      <div id="hcmDropdown" class="hcm-dropdown">
+        <!-- HCM checkboxes with images will be inserted here -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  <div class="legend">
+  <span style="background-color: #a4d1ab; padding: 6px 12px; border-radius: 6px; margin-right: 10px;">Chief Secretary</span>
+  <span style="background-color: #fab1ba; padding: 6px 12px; border-radius: 6px; margin-right: 10px;">Special Chief Secretary</span>
+  <span style="background-color: #bcc9ec; padding: 6px 12px; border-radius: 6px; margin-right: 10px;">Principal Secretary</span>
+  <span style="background-color: #f5d8ee; padding: 6px 12px; border-radius: 6px; margin-right: 10px;">Secretary</span>
+  <span style="background-color: #c6f3c0; padding: 6px 12px; border-radius: 6px; margin-right: 10px;">Others</span>
+</div>
+
+
+
+  <table id="officer-table">
+    <thead id="table-header"></thead>
+    <tbody id="table-body"></tbody>
+  </table>
+
+  <div id="officer-popupa" class="popupa">
+    <span class="popupa-close" onclick="$('#officer-popupa').hide()">✖</span>
+    <div id="officer-details"></div>
+  </div>
+
+  <div id="service-popupb" class="popupb">
+    <span class="popupb-close" onclick="$('#service-popupb').hide()">✖</span>
+    <div id="service-details"></div>
+  </div>
+
+  <div id="service-popupc" class="popupc">
+  <span class="popupc-close" onclick="$('#service-popupc').hide()">✖</span>
+  <div id="service-details-c"></div> <!-- ✅ Give a unique ID here -->
+</div>
+
+
+</body>
+</html>

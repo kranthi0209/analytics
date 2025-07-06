@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IAS Graphical View</title>
+  <link rel="stylesheet" href="style_graphIAS.css?v=6">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <h1>IAS Officer Service Graphical Report</h1>
+ 
+  <div style="text-align: center; margin-top: 5px;margin-bottom: 10px;">
+  <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; position: relative;">
+
+    
+    <!-- Tabular View -->
+    <button onclick="location.href='indexIAS.html'" class="animated-button black">
+      <i data-lucide= "table" style="margin-right: 10px;"></i>
+      Tabular View
+    </button>
+    <!-- IAS Data -->
+    <button onclick="location.href='graphIAS.html'" class="animated-button mustard">
+      <i data-lucide="circle-user-round" style="margin-right: 10px;"></i>
+      IAS Data
+    </button>
+    <!-- IPS Data -->
+    <button onclick="location.href='graphIPS.html'" class="animated-button red">
+      <i data-lucide="shield-user" style="margin-right: 10px;"></i>
+      IPS Data
+    </button>
+
+    <!-- IFS Data -->
+    <button onclick="location.href='graphIFS.html'" class="animated-button green">
+      <i data-lucide="tree-deciduous" style="margin-right: 10px;"></i>
+      IFS Data
+    </button>
+
+    <!-- Chief Minister Filter -->
+    <div style="position: relative;">
+      <button id="hcmFilterBtn" class="animated-button purple">
+        <i data-lucide="user-check" style="margin-right: 10px;"></i>
+        Select Chief Minister ⬇
+      </button>
+
+      <div id="hcmDropdown" class="hcm-dropdown">
+        <!-- HCM checkboxes with images will be inserted here -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <!-- 🔍 Universal Legend -->
+  <div id="legend" class="legend-container"></div>
+
+  <div id="chartGrid" class="chart-grid"></div>
+
+ 
+
+  <div id="service-popupc" class="popupc">
+  <span class="popupc-close" onclick="$('#service-popupc').hide()">✖</span>
+  <div id="service-details-c"></div>
+</div>
+ <script src="graphIAS.js?v=6"></script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IPS Officer Service Summary Report</title>
+  <link rel="stylesheet" href="styleIPS.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="scriptIPS.js" defer></script>
+</head>
+<body>
+  <h1 style="text-align: center; font-size: 60px;margin-bottom: 10px;">IPS Officer Service Summary Report</h1>
+    
+<div style="text-align: center; margin-top: 5px;margin-bottom: 10px;">
+  <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; position: relative;">
+
+    <!-- Graph View -->
+    <button onclick="location.href='graphIPS.html'" class="animated-button blue">
+      <i data-lucide= "bar-chart-3" style="margin-right: 10px;"></i>
+      Graphical View
+    </button>
+    
+    <!-- IAS Data -->
+    <button onclick="location.href='indexIAS.html'" class="animated-button mustard">
+      <i data-lucide="circle-user-round" style="margin-right: 10px;"></i>
+      IAS Data
+    </button>
+    <!-- IPS Data -->
+    <button onclick="location.href='indexIPS.html'" class="animated-button red">
+      <i data-lucide="shield-user" style="margin-right: 10px;"></i>
+      IPS Data
+    </button>
+
+    <!-- IFS Data -->
+    <button onclick="location.href='indexIFS.html'" class="animated-button green">
+      <i data-lucide="tree-deciduous" style="margin-right: 10px;"></i>
+      IFS Data
+    </button>
+
+    <!-- Chief Minister Filter -->
+    <div style="position: relative;">
+      <button id="hcmFilterBtn" class="animated-button purple">
+        <i data-lucide="user-check" style="margin-right: 10px;"></i>
+        Select Chief Minister ⬇
+      </button>
+
+      <div id="hcmDropdown" class="hcm-dropdown">
+        <!-- HCM checkboxes with images will be inserted here -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  
+
+
+
+  <table id="officer-table">
+    <thead id="table-header"></thead>
+    <tbody id="table-body"></tbody>
+  </table>
+
+  <div id="officer-popupa" class="popupa">
+    <span class="popupa-close" onclick="$('#officer-popupa').hide()">✖</span>
+    <div id="officer-details"></div>
+  </div>
+
+  <div id="service-popupb" class="popupb">
+    <span class="popupb-close" onclick="$('#service-popupb').hide()">✖</span>
+    <div id="service-details"></div>
+  </div>
+
+  <div id="service-popupc" class="popupc">
+  <span class="popupc-close" onclick="$('#service-popupc').hide()">✖</span>
+  <div id="service-details-c"></div> <!-- ✅ Give a unique ID here -->
+</div>
+
+
+</body>
+</html>
