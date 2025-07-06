@@ -1,4 +1,5 @@
 let groupedData = {};
+let currentGroupedData = {}; // ✅ Required for filtered views
 let departments = new Set();
 let categories = new Set();
 let allOfficerData = [];
@@ -27,74 +28,74 @@ fetch('officerDataIAS.json')
   .then(res => res.json())
   .then(data => {
     allOfficerData = data;
-
     const hcmSet = new Set();
-    data.forEach(entry => {
-      if (entry.HCM?.trim()) hcmSet.add(entry.HCM.trim());
-    });
-
-    populateHCMCheckboxes([...hcmSet]); // ✅ FIXED: no sort()
+    data.forEach(entry => { if (entry.HCM?.trim()) hcmSet.add(entry.HCM.trim()); });
+    populateHCMCheckboxes([...hcmSet]);
     updateGroupedData(data);
   });
-
 
 function updateGroupedData(data) {
   groupedData = {};
   departments.clear();
   categories.clear();
-
   data.forEach(entry => {
-    const name = entry["NameoftheOfficer"].trim();
+    const name = entry.NameoftheOfficer.trim();
     if (!groupedData[name]) groupedData[name] = { meta: entry, services: [] };
     groupedData[name].services.push(entry);
     departments.add(entry.Department);
     categories.add(entry.Category);
   });
-
-  renderTable(data);
+  currentGroupedData = { ...groupedData }; // ✅ cache original
+  renderTable(Object.values(currentGroupedData).flatMap(e => e.services));
 }
 
-function renderTable(officerData) {
-  const departmentsList = Array.from(departments);
+
+function renderTable() {
   const categoriesList = categoryOrder.filter(cat => categories.has(cat));
-  const headerRow1 = ['<th rowspan="2" class="sticky-col" onclick="sortBySeniority()">S.No</th>', '<th rowspan="2" class="sticky-col-2" onclick="sortByName()">Name of the Officer</th>'];
+  const headerRow1 = [
+    '<th rowspan="2" class="sticky-col" onclick="sortBySeniority()">S.No</th>',
+    '<th rowspan="2" class="sticky-col-2" onclick="sortByName()">Name of the Officer</th>'
+  ];
   const headerRow2 = [];
-  const categoryDeptMap = {};
+
+  // ✅ Always use full groupedData to preserve full column layout
+  const categoryDeptMap = getOrderedDeptMap(Object.entries(groupedData));
 
   categoriesList.forEach(cat => {
-    const uniqueDepts = [...new Set(officerData.filter(o => o.Category === cat).map(o => o.Department))];
-    const customOrder = customDepartmentOrder[cat] || [];
-    const depts = customOrder.filter(d => uniqueDepts.includes(d)).concat(uniqueDepts.filter(d => !customOrder.includes(d)).sort());
-    categoryDeptMap[cat] = depts;
+    const depts = categoryDeptMap[cat] || [];
     headerRow1.push(`<th colspan="${depts.length + 1}" class="category-header" data-category="${cat}">${cat}</th>`);
     depts.forEach(dept => {
       headerRow2.push(`<th data-department-category="${cat}">${dept}</th>`);
     });
     headerRow2.push(`<th class="clickable category-total-header" data-category="${cat}" onclick="sortByCategoryTotal('${cat}')">Total</th>`);
-
   });
 
-  document.getElementById('table-header').innerHTML = `<tr>${headerRow1.join('')}</tr><tr>${headerRow2.join('')}</tr>`;
-  renderBody(Object.entries(groupedData), categoriesList, categoryDeptMap);
+  document.getElementById('table-header').innerHTML = `
+    <tr>${headerRow1.join('')}</tr>
+    <tr>${headerRow2.join('')}</tr>
+  `;
+
+  // ✅ Use currentGroupedData for body (filtered or full)
+  renderBody(Object.entries(currentGroupedData), categoriesList, categoryDeptMap);
 }
+
 function sortByCategoryTotal(category) {
-  const arr = Object.entries(groupedData);
+  const arr = Object.entries(currentGroupedData);
   const columnId = `categoryTotal_${category}`;
   sortState.direction = sortState.column === columnId && sortState.direction === 'asc' ? 'desc' : 'asc';
   sortState.column = columnId;
 
   arr.sort(([, a], [, b]) => {
-    const aTotal = a.services
-      .filter(s => s.Category === category)
-      .reduce((sum, s) => sum + (+s.Years || 0), 0);
-    const bTotal = b.services
-      .filter(s => s.Category === category)
-      .reduce((sum, s) => sum + (+s.Years || 0), 0);
+    const aTotal = a.services.filter(s => s.Category === category).reduce((sum, s) => sum + (+s.Years || 0), 0);
+    const bTotal = b.services.filter(s => s.Category === category).reduce((sum, s) => sum + (+s.Years || 0), 0);
     return sortState.direction === 'asc' ? aTotal - bTotal : bTotal - aTotal;
   });
 
-  renderBody(arr, categoryOrder.filter(cat => categories.has(cat)), getOrderedDeptMap());
+  // ✅ Always use full column map from unfiltered data
+  renderBody(arr, categoryOrder.filter(cat => categories.has(cat)), getOrderedDeptMap(Object.entries(groupedData)));
 }
+
+
 
 function renderBody(entries, categoriesList, categoryDeptMap) {
   let tbodyHTML = '';
@@ -127,7 +128,7 @@ const detailRows = sortedFiltered.map(s =>
 }
 
 function sortAndRender(keyFn, columnId) {
-  const arr = Object.entries(groupedData);
+  const arr = Object.entries(currentGroupedData);
   if (sortState.column === columnId) {
     sortState.direction = sortState.direction === 'asc' ? 'desc' : 'asc';
   } else {
@@ -139,19 +140,13 @@ function sortAndRender(keyFn, columnId) {
     const bKey = keyFn(b.meta);
     return sortState.direction === 'asc' ? (aKey > bKey ? 1 : -1) : (aKey < bKey ? 1 : -1);
   });
-  renderBody(arr, categoryOrder.filter(cat => categories.has(cat)), getOrderedDeptMap());
+  renderBody(arr, categoryOrder.filter(cat => categories.has(cat)), getOrderedDeptMap(arr));
 }
 
-function sortBySeniority() {
-  sortAndRender(m => +m.SeniorityNo, 'seniority');
-}
-
-function sortByName() {
-  sortAndRender(m => m.NameoftheOfficer.trim().toLowerCase(), 'name');
-}
-
+function sortBySeniority() { sortAndRender(m => +m.SeniorityNo, 'seniority'); }
+function sortByName() { sortAndRender(m => m.NameoftheOfficer.trim().toLowerCase(), 'name'); }
 function sortByDepartment(category, department) {
-  const arr = Object.entries(groupedData);
+  const arr = Object.entries(currentGroupedData);
   const columnId = `${category}_${department}`;
   sortState.direction = sortState.column === columnId && sortState.direction === 'asc' ? 'desc' : 'asc';
   sortState.column = columnId;
@@ -161,8 +156,11 @@ function sortByDepartment(category, department) {
     const bTotal = b.services.filter(s => s.Category === category && s.Department === department).reduce((sum, s) => sum + (+s.Years || 0), 0);
     return sortState.direction === 'asc' ? aTotal - bTotal : bTotal - aTotal;
   });
-  renderBody(arr, categoryOrder.filter(cat => categories.has(cat)), getOrderedDeptMap());
+
+  // ✅ Always use full column map from unfiltered data
+  renderBody(arr, categoryOrder.filter(cat => categories.has(cat)), getOrderedDeptMap(Object.entries(groupedData)));
 }
+
 
 function getOrderedDeptMap() {
   const map = {};
@@ -270,8 +268,6 @@ function showAllServices(name) {
   $('#service-popupc').fadeIn();
 }
 
-
-
 const customHCMOrder = [
   "Nedurumalli Janardhana Reddy",
   "Kotla Vijaya Bhaskara Reddy",
@@ -308,7 +304,7 @@ function populateHCMCheckboxes(hcmList) {
     ...[...hcmSet].filter(h => !customHCMOrder.includes(h)).sort()
   ];
 
-  // Render checkboxes with image
+   // Render checkboxes with image
   sortedHCMs.forEach(hcm => {
     const id = `hcm_${hcm.replace(/\W+/g, '_')}`;
     const div = document.createElement('div');
@@ -339,8 +335,7 @@ function populateHCMCheckboxes(hcmList) {
 function renderHCMWithImage(hcm) {
   if (!hcm || !hcm.trim()) return '';
   const cleanHCM = hcm.trim();
-  }
-
+}
 function handleHCMCheckboxChange() {
   const selectedHCMs = Array.from(document.querySelectorAll('#hcmDropdown input:checked'))
     .map(cb => cb.value.trim());
@@ -349,24 +344,22 @@ function handleHCMCheckboxChange() {
 
 function filterByHCM(selectedHCMs) {
   if (!selectedHCMs.length) {
-    renderTable(Object.values(groupedData).flatMap(g => g.services)); // Show all
-    return;
-  }
-
-  const filteredData = Object.values(groupedData)
-    .map(entry => ({
+    currentGroupedData = { ...groupedData };
+  } else {
+    const filteredData = Object.values(groupedData).map(entry => ({
       meta: entry.meta,
       services: entry.services.filter(s => selectedHCMs.includes(s.HCM?.trim()))
-    }))
-    .filter(entry => entry.services.length > 0);
+    })).filter(entry => entry.services.length > 0);
 
-  const filteredMap = {};
-  filteredData.forEach(entry => {
-    const name = entry.meta.NameoftheOfficer.trim();
-    filteredMap[name] = entry;
-  });
+    currentGroupedData = {};
+    filteredData.forEach(entry => {
+      const name = entry.meta.NameoftheOfficer.trim();
+      currentGroupedData[name] = entry;
+    });
+  }
 
-  renderBody(Object.entries(filteredMap), categoryOrder.filter(cat => categories.has(cat)), getOrderedDeptMap());
+  // ✅ Render table with full structure using all original department mapping
+  renderTable();  // This will use renderBody internally with full column structure
 }
 
 // Toggle dropdown visibility
@@ -402,7 +395,16 @@ document.addEventListener('click', function (e) {
   }
 });
 
-
+function getOrderedDeptMap(entryArray = Object.entries(currentGroupedData)) {
+  const map = {};
+  categoryOrder.forEach(cat => {
+    if (!categories.has(cat)) return;
+    const deptsInCat = [...new Set(entryArray.flatMap(([, entry]) => entry.services.filter(s => s.Category === cat).map(s => s.Department)))];
+    const customOrder = customDepartmentOrder[cat] || [];
+    map[cat] = customOrder.filter(d => deptsInCat.includes(d)).concat(deptsInCat.filter(d => !customOrder.includes(d)).sort());
+  });
+  return map;
+}
 function escapeHtml(text) {
   return text.replace(/[&<>"']/g, m => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
