@@ -325,8 +325,8 @@ canvas {
   z-index: 1000;
   max-height: 300px;
   overflow-y: auto;
-  width: 300px;
-  min-width: 280px;
+  width: 500px;
+  min-width: 480px;
   text-align: left;
 }
 
@@ -336,7 +336,7 @@ canvas {
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
-  width: 300px;
+  width:100%;
 }
 .hcm-item img {
   width: var(--hcm-img-size, 34px);
