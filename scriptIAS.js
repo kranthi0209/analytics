@@ -311,15 +311,10 @@ function populateHCMCheckboxes(hcmList) {
   // Render checkboxes with image
   sortedHCMs.forEach(hcm => {
     const id = `hcm_${hcm.replace(/\W+/g, '_')}`;
-    const imageName = hcm.replace(/\s+/g, '_') + '.jpg';
-    const basePath = './';
-    const imagePath = `${basePath}${imageName}`;
-
     const div = document.createElement('div');
     div.className = 'hcm-item';
     div.innerHTML = `
       <input type="checkbox" id="${id}" value="${hcm}" />
-      <img src="${imagePath}" alt="${hcm}" class="hcm-image" />
       <label for="${id}">${hcm}</label>
     `;
     container.appendChild(div);
@@ -344,11 +339,7 @@ function populateHCMCheckboxes(hcmList) {
 function renderHCMWithImage(hcm) {
   if (!hcm || !hcm.trim()) return '';
   const cleanHCM = hcm.trim();
-  const imageName = cleanHCM.replace(/\s+/g, '_') + '.jpg';
-  const basePath = './';
-  const imagePath = `${basePath}${imageName}`;
-  return `<img src="${imagePath}" alt="${escapeHtml(cleanHCM)}" style="height:20px;vertical-align:middle;margin-right:6px;border-radius:3px;">${escapeHtml(cleanHCM)}`;
-}
+  }
 
 function handleHCMCheckboxChange() {
   const selectedHCMs = Array.from(document.querySelectorAll('#hcmDropdown input:checked'))
