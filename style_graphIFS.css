@@ -192,7 +192,9 @@ canvas {
 .animated-button:hover {
   transform: scale(1.06);
 }
-
+.animated-button.yellow {
+  background: linear-gradient(to right, #575c12, #484d0a);
+}
 .animated-button.blue {
   background: linear-gradient(to right, #60a5fa, #2563eb);
 }
