@@ -228,7 +228,7 @@ const rowsHtml = sortedServices.map(row =>
 }
 
 function showAllServices(name) {
-  const officer = groupedData[name];
+  const officer = currentGroupedData[name];
   if (!officer) return;
   const services = officer.services;
 
