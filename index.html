@@ -9,7 +9,7 @@
     :root {
       --primary: #0f172a;
       --secondary: #1e293b;
-      --accent: #0ea5e9;
+      --accent: #e90e0e;
       --tile-bg: #f8fafc;
       --hover-bg: #e2e8f0;
       --text-light: #64748b;
@@ -70,21 +70,23 @@
     }
 
     .tile {
-      background-color: var(--tile-bg);
-      border-radius: 14px;
-      width: 340px;
-      height: 300px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px 20px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
-      cursor: pointer;
-      border: 1px solid #e2e8f0;
-    }
+  position: relative;
+  background-color: var(--tile-bg);
+  border-radius: 14px;
+  width: 340px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+}
+
 
     .tile:hover {
       background-color: var(--hover-bg);
@@ -123,11 +125,13 @@
     }
 
     @media (max-width: 768px) {
-      .tile {
-        width: 90%;
-        height: auto;
-        padding: 30px 15px;
-      }
+  .tile {
+    width: 90%;
+    height: auto;
+    padding: 30px 15px;
+  }
+}
+
 
       header {
         font-size: 26px;
@@ -204,6 +208,22 @@
       50% { transform: scale(0.96); }
       75% { transform: scale(1.05); }
     }
+    .ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--accent);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 10;
+}
+.tile {
+  position: relative;
+}
+
   </style>
 </head>
 <body>
@@ -212,43 +232,69 @@
     Chief Minister's Office, Andhra Pradesh
   </header>
 
-  <div class="subheading">
-    Integrated Dashboard of AIS Officers' Career Details
-  </div>
-
   <div class="main-content">
-    <div class="tiles-container">
-      <div class="tile" onclick="location.href='indexIAS.html'">
-        <i data-lucide="briefcase"></i>
-        <div class="tile-title">Indian Administrative Service</div>
-        <div class="tile-description">Track IAS officer postings, service periods, and departmental assignments.</div>
-      </div>
+  <div class="tiles-container">
 
-      <div class="tile" onclick="location.href='indexIPS.html'">
-        <i data-lucide="shield"></i>
-        <div class="tile-title">Indian Police Service</div>
-        <div class="tile-description">Detailed service data for IPS officers in security and policing sectors.</div>
-      </div>
-
-      <div class="tile" onclick="location.href='indexIFS.html'">
-        <i data-lucide="leaf"></i>
-        <div class="tile-title">Indian Forest Service</div>
-        <div class="tile-description">View forest cadre positions, roles, and tenure details of IFS officers.</div>
-      </div>
+    <div class="tile" onclick="location.href='indexIAS.html'">
+      <div class="ribbon" id="iasCount">...</div>
+      <i data-lucide="briefcase"></i>
+      <div class="tile-title">Indian Administrative Service</div>
+      <div class="tile-description">Track IAS officer postings, service periods, and departmental assignments.</div>
     </div>
+
+    <div class="tile" onclick="location.href='indexIPS.html'">
+      <div class="ribbon" id="ipsCount">...</div>
+      <i data-lucide="shield"></i>
+      <div class="tile-title">Indian Police Service</div>
+      <div class="tile-description">Detailed service data for IPS officers in security and policing sectors.</div>
+    </div>
+
+    <div class="tile" onclick="location.href='indexIFS.html'">
+      <div class="ribbon" id="ifsCount">...</div>
+      <i data-lucide="leaf"></i>
+      <div class="tile-title">Indian Forest Service</div>
+      <div class="tile-description">View forest cadre positions, roles, and tenure details of IFS officers.</div>
+    </div>
+
   </div>
+</div>
+
+
   
   <footer>
     &copy; 2025 Government of Andhra Pradesh. All rights reserved.
   </footer>
 
   <script>
-    lucide.createIcons();
-    function toggleChat() {
-      const chat = document.getElementById("chatWindow");
-      chat.style.display = (chat.style.display === "block") ? "none" : "block";
-    }
-  </script>
+  lucide.createIcons();
+  function toggleChat() {
+    const chat = document.getElementById("chatWindow");
+    chat.style.display = (chat.style.display === "block") ? "none" : "block";
+  }
+
+  // Utility to get unique officer names from a JSON file
+  async function getUniqueOfficerCount(url) {
+    const res = await fetch(url);
+    const data = await res.json();
+    const names = new Set(data.map(entry => entry.NameoftheOfficer?.trim()));
+    return names.size;
+  }
+
+  async function loadCounts() {
+    const [ias, ips, ifs] = await Promise.all([
+      getUniqueOfficerCount('officerDataIAS.json'),
+      getUniqueOfficerCount('officerDataIPS.json'),
+      getUniqueOfficerCount('officerDataIFS.json'),
+    ]);
+
+    document.getElementById('iasCount').textContent = `${ias} Officers`;
+    document.getElementById('ipsCount').textContent = `${ips} Officers`;
+    document.getElementById('ifsCount').textContent = `${ifs} Officers`;
+  }
+
+  loadCounts();
+</script>
+
 
 </body>
 </html>
