@@ -345,7 +345,8 @@ function renderHCMWithImage(hcm) {
   if (!hcm || !hcm.trim()) return '';
   const cleanHCM = hcm.trim();
   const imageName = cleanHCM.replace(/\s+/g, '_') + '.jpg';
-  const imagePath = `images/hcm/${imageName}`;
+  const basePath = '/analytics/';
+  const imagePath = `${basePath}${imageName}`;
   return `<img src="${imagePath}" alt="${escapeHtml(cleanHCM)}" style="height:20px;vertical-align:middle;margin-right:6px;border-radius:3px;">${escapeHtml(cleanHCM)}`;
 }
 
