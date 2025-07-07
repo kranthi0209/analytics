@@ -102,7 +102,7 @@ function renderBody(entries, categoriesList, categoryDeptMap) {
   entries.forEach(([name, { meta, services }]) => {
     const colorClass = `cadre-${meta.Cadre.replace(/\s/g, '-')}`;
     tbodyHTML += `<tr class="${colorClass}">`;
-    tbodyHTML += `<td class="sticky-col"><a href="#" onclick='event.preventDefault(); showAllServices("${escapeHtml(name)}")'>${meta["SeniorityNo"]}</a></td>`;
+    tbodyHTML += `<td class="sticky-col"><a href="#" onclick='event.preventDefault(); showOfficer(${JSON.stringify(meta)})'>${meta["SeniorityNo"]}</a></td>`;
     tbodyHTML += `<td class="sticky-col-2"><a href="#" onclick='event.preventDefault(); showOfficer(${JSON.stringify(meta)})'>${escapeHtml(name)}</a></td>`;
 
     categoriesList.forEach(cat => {
