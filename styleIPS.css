@@ -9,7 +9,22 @@ body {
       75% { transform: scale(1.04); }
     }
 
-    
+ header {
+      background-color: #013b49;
+      color: #f0eeea;
+      padding: 0px;
+      text-align: center;
+      font-size: 50px;
+      font-weight: 800;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .table-wrapper {
+  position: relative;
+  width: 99.5%;
+  height: calc(100vh - 195px); /* Adjust 150px based on your header/legend height */
+  overflow: auto;
+  border: 2px solid #000000; /* optional */
+}   
 table {
   border-collapse: collapse;
   table-layout: fixed;
