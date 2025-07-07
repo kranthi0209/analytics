@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #fffcd5;
+  background-color: #f8d7d4;
 }
 @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
@@ -13,10 +13,11 @@ body {
 table {
   border-collapse: collapse;
   table-layout: fixed;
-  width: 3800px;
+  width: 2300px;
 }
 th, td {
   border: 1px solid #773f3f;
+  background-color: #f3e3c0;
   padding: 8px;
   white-space: normal;
   word-wrap: break-word;
@@ -35,15 +36,16 @@ th[data-department-category] {
       white-space: normal;
       vertical-align: middle;
       padding: 8px 4px;
-      height: 140px;
+      height: auto;
       max-width: 20px;
       overflow-wrap: break-word;
       word-break: break-word;
     }
 table thead tr:nth-child(2) th {
-  top: 30px;
+  top: 70px; height:150px;
   z-index: 5;
   background: #f2f2f2;
+  
 }
 .sticky-col {
   position: sticky;
@@ -62,6 +64,7 @@ table thead tr:nth-child(2) th {
 }
 th.sticky-col, th.sticky-col-2 {
   z-index: 8;
+  height:100px;
 }
 .category-header {
   cursor: pointer;
@@ -97,10 +100,10 @@ td.category-total {
   top: 50%;
   left: 50%;
   width: 90%;
-  max-width: 1500px;
+  max-width: 1000px;
   background: #ccf8ae;
   border: 5px solid #ccc;
-  padding: 0px;
+  padding: 20px;
   z-index: 1000;
   transform: translate(-50%, -50%) scale(0.8);
   border-radius: 8px;
@@ -123,7 +126,6 @@ td.category-total {
   width: 100%;
   table-layout: auto;
 }
-
 .popupb {
   display: none;
   position: fixed;
@@ -241,15 +243,14 @@ canvas {
 .popupc-table th,
 .popupc-table td {
   border: 1px solid #aaa;
+  padding: 8px;
   text-align: center;
-  background-color: #e7d3ee;
-  position: sticky;
+  background-color: #efd6f8;
 }
 
 .popupc-table th {
   background-color: #bcc4c4;
   height: 50px;
-  padding: 0px;margin-top: 0%;
 }
 .popupc-table th:nth-child(1),
 .popupc-table td:nth-child(1) {
@@ -324,7 +325,6 @@ canvas {
   50% { transform: scale(1.08); }
 }
 
-/* ⬇️ Dropdown Container */
 .hcm-dropdown {
   display: none;
   position: absolute;
