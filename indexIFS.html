@@ -9,7 +9,9 @@
   <script src="scriptIFS.js" defer></script>
 </head>
 <body>
-  <h1 style="text-align: center; font-size: 60px;margin-bottom: 10px;">IFS Officer Service Summary Report</h1>
+ <header>
+    IFS Officer Service Summary Report
+  </header>
     
 <div style="text-align: center; margin-top: 5px;margin-bottom: 10px;">
   <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; position: relative;">
@@ -59,10 +61,12 @@
 
   
 
+  <div class="table-wrapper">
   <table id="officer-table">
     <thead id="table-header"></thead>
     <tbody id="table-body"></tbody>
   </table>
+</div>
 
   <div id="officer-popupa" class="popupa">
     <span class="popupa-close" onclick="$('#officer-popupa').hide()">✖</span>
