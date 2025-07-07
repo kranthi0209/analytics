@@ -122,6 +122,7 @@ td.category-total {
 .popupa-table {
   width: 100%;
   table-layout: auto;
+  background: #f5f7a6;
 }
 
 .popupb {
