@@ -17,7 +17,6 @@ table {
 }
 th, td {
   border: 1px solid #773f3f;
- 
   padding: 8px;
   white-space: normal;
   word-wrap: break-word;
@@ -211,7 +210,7 @@ canvas {
   left: 50%;
   width: 90%;
   max-width: 1500px;
-  background: #dcf5e9;
+  background: #dcf5eb;
   border: 5px solid #ccc;
   padding: 0px;
   z-index: 1000;
@@ -238,6 +237,7 @@ canvas {
 .popupc-table {
   width: 100%;
   table-layout: auto;
+  background: #0f6d6d;
 }
 
 .popupc-table th,
