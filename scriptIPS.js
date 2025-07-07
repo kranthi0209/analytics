@@ -173,6 +173,9 @@ function getOrderedDeptMap() {
 }
 
 function showOfficer(data) {
+  const name = data.NameoftheOfficer.trim();
+  const services = groupedData[name]?.services || [];
+
   const fieldLabels = {
     "Cadre": "Cadre", "NameoftheOfficer": "Name of the Officer", "IdentityNo": "Identity No",
     "currentposting": "Current Posting", "DateofAppointment": "Date of Appointment",
@@ -180,16 +183,63 @@ function showOfficer(data) {
     "DateOfBirth": "Date of Birth", "AllotmentYear": "Allotment Year", "Domicile": "Domicile",
     "EmailId": "Email", "PhoneNo": "Phone Number"
   };
+
   const excludeKeys = ["From", "To", "Years", "PostName", "Department", "Category", "SLNO", "SeniorityNo", "HCM"];
-  let html = '<table class="popupa-table">';
-  for (const [key, value] of Object.entries(data)) {
-    if (excludeKeys.includes(key)) continue;
-    const label = fieldLabels[key] || key;
-    const highlight = key.toLowerCase().includes("education") ? 'style="color:red;font-weight:bold;"' : '';
-    html += `<tr><th>${label}</th><td ${highlight}>${escapeHtml(value.toString())}</td></tr>`;
-  }
-  html += '</table>';
-  $('#officer-details').html(html).parent().show();
+  const entries = Object.entries(data).filter(([k]) => !excludeKeys.includes(k));
+  const half = Math.ceil(entries.length / 2);
+
+  let html = `
+    <h2 style="text-align:center; margin-top:0; color:#1d3557;">Officer Details</h2>
+    <div style="display: flex; gap: 20px;">
+      <table class="popupa-table" style="flex: 1;">
+        ${entries.slice(0, half).map(([k, v]) => {
+          const label = fieldLabels[k] || k;
+          const highlight = k.toLowerCase().includes("education") ? 'style="color:red;font-weight:bold;"' : '';
+          return `<tr><th>${label}</th><td ${highlight}>${escapeHtml(v.toString())}</td></tr>`;
+        }).join('')}
+      </table>
+      <table class="popupa-table" style="flex: 1;">
+        ${entries.slice(half).map(([k, v]) => {
+          const label = fieldLabels[k] || k;
+          const highlight = k.toLowerCase().includes("education") ? 'style="color:red;font-weight:bold;"' : '';
+          return `<tr><th>${label}</th><td ${highlight}>${escapeHtml(v.toString())}</td></tr>`;
+        }).join('')}
+      </table>
+    </div>`;
+
+  const sortedServices = services.slice().sort((a, b) => new Date(b.From) - new Date(a.From));
+  html += `
+    <h2 style="text-align:center; margin-top:20px; color:#1d3557;">Service History</h2>
+    <table class="popupc-table" style="width:100%; margin-top: 10px;">
+      <thead>
+        <tr>
+          <th>Post Name</th>
+          <th>Department</th>
+          <th>Category</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Years</th>
+          <th>HCM</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${sortedServices.map(s => `
+          <tr>
+            <td>${escapeHtml(s.PostName)}</td>
+            <td>${escapeHtml(s.Department)}</td>
+            <td>${escapeHtml(s.Category)}</td>
+            <td>${s.From}</td>
+            <td>${s.To}</td>
+            <td>${parseFloat(s.Years).toFixed(2)}</td>
+            <td>${escapeHtml(s.HCM || '')}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+
+  $('#officer-details').html(html);
+  $('#officer-popupa').fadeIn();
 }
 
 function showService(name, rows) {
