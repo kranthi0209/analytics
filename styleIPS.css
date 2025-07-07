@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f8d7d4;
+  background-color: #fffcd5;
 }
 @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
@@ -13,11 +13,10 @@ body {
 table {
   border-collapse: collapse;
   table-layout: fixed;
-  width: 2300px;
+  width: 3800px;
 }
 th, td {
   border: 1px solid #773f3f;
-  background-color: #f3e3c0;
   padding: 8px;
   white-space: normal;
   word-wrap: break-word;
@@ -36,16 +35,15 @@ th[data-department-category] {
       white-space: normal;
       vertical-align: middle;
       padding: 8px 4px;
-      height: auto;
+      height: 140px;
       max-width: 20px;
       overflow-wrap: break-word;
       word-break: break-word;
     }
 table thead tr:nth-child(2) th {
-  top: 70px; height:150px;
+  top: 30px;
   z-index: 5;
   background: #f2f2f2;
-  
 }
 .sticky-col {
   position: sticky;
@@ -64,7 +62,6 @@ table thead tr:nth-child(2) th {
 }
 th.sticky-col, th.sticky-col-2 {
   z-index: 8;
-  height:100px;
 }
 .category-header {
   cursor: pointer;
@@ -100,10 +97,10 @@ td.category-total {
   top: 50%;
   left: 50%;
   width: 90%;
-  max-width: 550px;
+  max-width: 1500px;
   background: #ccf8ae;
   border: 5px solid #ccc;
-  padding: 20px;
+  padding: 0px;
   z-index: 1000;
   transform: translate(-50%, -50%) scale(0.8);
   border-radius: 8px;
@@ -126,6 +123,7 @@ td.category-total {
   width: 100%;
   table-layout: auto;
 }
+
 .popupb {
   display: none;
   position: fixed;
@@ -243,14 +241,20 @@ canvas {
 .popupc-table th,
 .popupc-table td {
   border: 1px solid #aaa;
-  padding: 8px;
   text-align: center;
-  background-color: #efd6f8;
+  background-color: #e7d3ee;
+  position: sticky;
 }
 
 .popupc-table th {
   background-color: #bcc4c4;
   height: 50px;
+  padding: 0px;margin-top: 0%;
+}
+.popupc-table th:nth-child(1),
+.popupc-table td:nth-child(1) {
+  width: 400px;
+  min-width: 100px;
 }
 .popupc-table th:nth-child(4),
 .popupc-table td:nth-child(4) {
@@ -265,6 +269,11 @@ canvas {
 .popupc-table th:nth-child(5),
 .popupc-table td:nth-child(5) {
   width: 100px;
+  min-width: 100px;
+}
+.popupc-table th:nth-child(7),
+.popupc-table td:nth-child(7) {
+  width: 400px;
   min-width: 100px;
 }
 /* 🔵 Button Styles */
