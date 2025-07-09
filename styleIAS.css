@@ -52,13 +52,13 @@ th[data-department-category] {
       white-space: normal;
       vertical-align: middle;
       padding: 8px 4px;
-      height: 140px;
+      height: 200px;
       max-width: 20px;
       overflow-wrap: break-word;
       word-break: break-word;
     }
 table thead tr:nth-child(2) th {
-  top: 30px;
+  top: 65px;
   z-index: 5;
   background: #f2f2f2; border: 1px solid #773f3f;
 }
