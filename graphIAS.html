@@ -9,23 +9,27 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+ 
+
+
+
 </head>
 <body>
   <h1>IAS Officer Service Graphical Report</h1>
  
-  <div style="text-align: center; margin-top: 5px;margin-bottom: 10px;">
+<div style="text-align: center; margin-top: 5px;margin-bottom: 10px;">
   <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; position: relative;">
 <!-- Home Page -->
     <button onclick="location.href='index.html'" class="animated-button yellow">
       <i data-lucide= "house" style="margin-right: 10px;"></i>
       Home
     </button>
-    
-    <!-- Tabular View -->
+   <!-- Tabular View -->
     <button onclick="location.href='indexIAS.html'" class="animated-button black">
       <i data-lucide= "table" style="margin-right: 10px;"></i>
       Tabular View
     </button>
+    
     <!-- IAS Data -->
     <button onclick="location.href='graphIAS.html'" class="animated-button mustard">
       <i data-lucide="circle-user-round" style="margin-right: 10px;"></i>
@@ -43,9 +47,33 @@
       IFS Data
     </button>
 
-    
+    <!-- Chief Minister Filter -->
+    <div style="position: relative;">
+      <button id="hcmFilterBtn" class="animated-button purple">
+        <i data-lucide="user-check" style="margin-right: 10px;"></i>
+        Select Chief Minister ⬇
+      </button>
+
+      <div id="hcmDropdown" class="hcm-dropdown">
+        <!-- HCM checkboxes with images will be inserted here -->
+      </div>
+    </div>
 
   </div>
+</div>
+<div id="officer-popupa" class="popupa">
+    <span class="popupa-close" onclick="$('#officer-popupa').hide()">✖</span>
+    <div id="officer-details"></div>
+  </div>
+
+  <div id="service-popupb" class="popupb">
+    <span class="popupb-close" onclick="$('#service-popupb').hide()">✖</span>
+    <div id="service-details"></div>
+  </div>
+
+  <div id="service-popupc" class="popupc">
+  <span class="popupc-close" onclick="$('#service-popupc').hide()">✖</span>
+  <div id="service-details-c"></div> <!-- ✅ Give a unique ID here -->
 </div>
 
   <!-- 🔍 Universal Legend -->
@@ -55,10 +83,7 @@
 
  
 
-  <div id="service-popupc" class="popupc">
-  <span class="popupc-close" onclick="$('#service-popupc').hide()">✖</span>
-  <div id="service-details-c"></div>
-</div>
+  
  <script src="graphIAS.js?v=6"></script>
 
 </body>
