@@ -10,7 +10,27 @@ h1 {
   margin-top: 20px;
   color: #333;
 }
-
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: auto;
+  
+}
+th, td {
+  border: 1px solid #773f3f;
+  padding: 8px;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+th {
+  background-color: #e0e0e0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  cursor: pointer;
+}
 
 /* 📌 Universal Legend */
 .legend-container {
@@ -23,7 +43,7 @@ h1 {
   padding: 20px 0;
   position: sticky;              /* 🔥 Sticky position */
   top: 0;                        /* 👆 Sticks to top of screen */
-  z-index: 1000;                 /* Ensure it stays above charts */
+  z-index: 10;                 /* Ensure it stays above charts */
   border-bottom: 1px solid #ccc; /* Optional divider line */
 }
 .legend-item {
@@ -45,15 +65,15 @@ h1 {
 .chart-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  padding: 20px;
+  gap: 10px;
+  padding: 10px;
   box-sizing: border-box;
-  max-width: 2000px;
+  max-width: 3000px;
   margin: 0 auto;
 }
 
 .chart-container {
-  background: #ffffff;
+  background: #ebffee;
   border: 1px solid #ccc;
   border-radius: 12px;
   padding: 10px;
@@ -62,11 +82,11 @@ h1 {
 }
 
 .chart-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
   border-radius: 12px;
-  color: black;
-  background: #ccb849;
+  color: #000000;
+  background: #5ee972;
   margin-bottom: 10px;
 }
 
@@ -87,14 +107,104 @@ canvas {
 .bar-color-8 { background-color: #9c755f; }
 .bar-color-9 { background-color: #f37b40; }
 
+
+.popupa {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 1500px;
+  background: #ccf8ae;
+  border: 5px solid #ccc;
+  padding: 0px;
+  z-index: 1000;
+  transform: translate(-50%, -50%) scale(0.8);
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 80vh;
+  animation: popupa-zoom 0.4s ease forwards;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+@keyframes popupa-zoom {
+  from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+.popupa-close {
+  float: right;
+  cursor: pointer;
+  font-size: 18px;
+  color: red;
+}
+.popupa-table {
+  width: 100%;
+  table-layout: auto;
+  background: #f5f7a6;
+}
+
+.popupb {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 1000px;
+  background: #fff8c6;
+  border: 5px solid #ccc;
+  padding: 20px;
+  z-index: 1000;
+  transform: translate(-50%, -50%) scale(0.8);
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 80vh;
+  animation: popupb-zoom 0.4s ease forwards;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+@keyframes popupb-zoom {
+  from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+.popupb-close {
+  float: right;
+  cursor: pointer;
+  font-size: 18px;
+  color: red;
+}
+.popupb-table {
+  width: 100%;
+  table-layout: auto;
+}
+
+.popupb-table th:nth-child(2),
+.popupb-table td:nth-child(2) {
+  width: 80px;
+  min-width: 100px;
+}
+.popupb-table th:nth-child(3),
+.popupb-table td:nth-child(3) {
+  width: 100px;
+  min-width: 100px;
+}
+.popupb-table th:nth-child(4),
+.popupb-table td:nth-child(4) {
+  width: 40px;
+  min-width: 100px;
+}
+.popupb-table th:nth-child(5),
+.popupb-table td:nth-child(5) {
+  width: 250px;
+  min-width: 100px;
+}
+
+}
 .popupc {
   display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   width: 90%;
-  max-width: 1800px;
-  background: #dcf5e9;
+  max-width: 1500px;
+  background: #dcf5eb;
   border: 5px solid #ccc;
   padding: 0px;
   z-index: 1000;
@@ -120,56 +230,46 @@ canvas {
 
 .popupc-table {
   width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto;
+  background: #0f6d6d;
 }
 
-.popupc-table thead th {
-  position: sticky;
-  top: 0;
-  background-color: #8bbe76;
-  z-index: 2;
-  height: 50px;
-  text-align: center;
-  border: 1px solid #aaa;
-}
-
+.popupc-table th,
 .popupc-table td {
   border: 1px solid #aaa;
-  padding: 8px;
   text-align: center;
-  background-color: #e1f5bc;
-  font-size: 18px;
+  background-color: #e7d3ee;
+  position: sticky;
+}
+
+.popupc-table th {
+  background-color: #bcc4c4;
+  height: 50px;
+  padding: 0px;margin-top: 0%;
 }
 .popupc-table th:nth-child(1),
 .popupc-table td:nth-child(1) {
-  width: 500px;
-  min-width: 100px;
-}
-.popupc-table th:nth-child(2),
-.popupc-table td:nth-child(2) {
-  width: 200px;
-  min-width: 100px;
-}
-.popupc-table th:nth-child(3),
-.popupc-table td:nth-child(3) {
-  width: 200px;
+  width: 400px;
   min-width: 100px;
 }
 .popupc-table th:nth-child(4),
 .popupc-table td:nth-child(4) {
-  width: 120px;
+  width: 100px;
   min-width: 100px;
 }
-
+.popupc-table th:nth-child(7),
+.popupc-table td:nth-child(7) {
+  width: 250px;
+  min-width: 100px;
+}
 .popupc-table th:nth-child(5),
 .popupc-table td:nth-child(5) {
-  width: 120px;
+  width: 100px;
   min-width: 100px;
 }
-.popupc-table th:nth-child(6),
-.popupc-table td:nth-child(6) {
-  width: 50px;
+.popupc-table th:nth-child(7),
+.popupc-table td:nth-child(7) {
+  width: 400px;
   min-width: 100px;
 }
 /* 🔵 Button Styles */
@@ -194,7 +294,7 @@ canvas {
   transform: scale(1.06);
 }
 .animated-button.yellow {
-  background: linear-gradient(to right, #575c12, #484d0a);
+  background: linear-gradient(to right, #d1793e, #c4570f);
 }
 .animated-button.blue {
   background: linear-gradient(to right, #60a5fa, #2563eb);
@@ -232,13 +332,15 @@ canvas {
   border-radius: 12px;
   padding: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  max-height: 300px;
+  z-index: 10000;
+  max-height: 500px;
   overflow-y: auto;
-  width: 300px;
-  min-width: 280px;
+  width: 450px !important;        /* ⬅️ Force wider width */
+  min-width: 450px !important;    /* ⬅️ Prevent shrinkage */
   text-align: left;
+  box-sizing: border-box;
 }
+
 
 /* 📸 Image and Checkbox Row */
 .hcm-item {
@@ -246,7 +348,7 @@ canvas {
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
-  width: 300px;
+  width: 410px;
 }
 .hcm-item img {
   width: var(--hcm-img-size, 34px);
