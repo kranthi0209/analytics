@@ -4,7 +4,14 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.table-wrapper {
+  position: relative;
+  width: 99%;
+  margin: 10px;
+  height: calc(100vh - 160px); /* Adjust 150px based on your header/legend height */
+  overflow: auto;
+  border: 1px solid #000000; /* optional */
+}
 h1 {
   text-align: center;
   margin-top: 20px;
@@ -35,12 +42,12 @@ th {
 /* 📌 Universal Legend */
 .legend-container {
   display: flex;
+  width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 10px 20px 0;
   gap: 10px;
   background-color: #f7f6c7;     /* Match background */
-  padding: 20px 0;
+  padding: 20px 10px;
   position: sticky;              /* 🔥 Sticky position */
   top: 0;                        /* 👆 Sticks to top of screen */
   z-index: 10;                 /* Ensure it stays above charts */
@@ -55,7 +62,7 @@ th {
 }
 
 .legend-box {
-  width: 14px;
+  width: 15px;
   height: 14px;
   border-radius: 3px;
   display: inline-block;
